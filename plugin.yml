@@ -1,5 +1,6 @@
 main: com.sharky.pcmc.PCMCEssentials
 name: PCMCEssentials
+depend: [Essentials]
 version: 0.1
 api-version: 1.15
 author: Sharky
@@ -14,6 +15,8 @@ commands:
       usage: /<command> [discord_ID]
       permission: pcmcessentials.link
 permissions:
+   pcmcessentials.admin:
+      default: op
    pcmcessentials.quad:
       default: true
    pcmcessentials.link:
@@ -21,5 +24,6 @@ permissions:
    pcmcessentials.*:
       default: op
       children:
+         pcmcessentials.admin: true
          pcmcessentials.quad: true
          pcmcessentials.link: true
