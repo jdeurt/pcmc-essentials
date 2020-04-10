@@ -3,6 +3,7 @@ package com.sharky.pcmc;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import com.sharky.pcmc.commands.*;
+import com.sharky.pcmc.completers.CompleterQuad;
 
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.event.Listener;
@@ -22,6 +23,7 @@ public class PCMCEssentials extends JavaPlugin implements Listener {
 		
 		// Register commands
 		this.getCommand("quad").setExecutor(new CommandQuad(this));
+		this.getCommand("quad").setTabCompleter(new CompleterQuad());
 		this.getCommand("link").setExecutor(new CommandLink());
 		
 		getLogger().info("Enabled PCMC Essentials");
