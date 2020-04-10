@@ -1,0 +1,25 @@
+main: com.sharky.pcmc.PCMCEssentials
+name: PCMCEssentials
+version: 0.1
+api-version: 1.15
+author: Sharky
+description: Essential commands and functions for the PCMC server
+commands:
+   quad:
+      description: Allows players to set their own quad
+      usage: /<command> [quadrant]
+      permission: pcmcessentials.quad
+   link:
+      description: Allows players to link their Minecraft and Discord accounts
+      usage: /<command> [discord_ID]
+      permission: pcmcessentials.link
+permissions:
+   pcmcessentials.quad:
+      default: true
+   pcmcessentials.link:
+      default: true
+   pcmcessentials.*:
+      default: op
+      children:
+         pcmcessentials.quad: true
+         pcmcessentials.link: true
