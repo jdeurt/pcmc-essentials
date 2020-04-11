@@ -24,7 +24,7 @@ public class PCMCEssentials extends JavaPlugin implements Listener {
 		// Register commands
 		this.getCommand("quad").setExecutor(new CommandQuad(this));
 		this.getCommand("quad").setTabCompleter(new CompleterQuad());
-		this.getCommand("link").setExecutor(new CommandLink());
+		this.getCommand("link").setExecutor(new CommandLink(this));
 		
 		getLogger().info("Enabled PCMC Essentials");
 	}
