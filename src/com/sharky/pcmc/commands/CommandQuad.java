@@ -51,7 +51,7 @@ public class CommandQuad implements CommandExecutor {
 				}
 			}
 			
-			PlayerConfig playerConfig = new PlayerConfig(this.plugin, player);
+			PlayerConfig playerConfig = new PlayerConfig(this.plugin, target);
 			
 			if (!this.plugin.config.getBoolean("allow-quad-reselect") && playerConfig.getQuadStatus() && !player.hasPermission("pcmcessentials.admin")) {
 				player.sendMessage("You cannot change your quad once it has been set");
@@ -80,7 +80,52 @@ public class CommandQuad implements CommandExecutor {
 			
 			return true;
 		} else {
-			this.plugin.getLogger().info("You must be a player to execute this command");
+			if (args.length != 2) {
+				sender.sendMessage("Incorrect command syntax");
+				
+				return false;
+			}
+			
+			if (!sender.hasPermission("pcmcessentials.admin")) {
+				sender.sendMessage("Missing permission pcmcessentials.admin");
+				
+				return true;
+			}
+			
+			Player target = this.plugin.getServer().getPlayerExact(args[1]);
+			
+			if (target == null) {
+				sender.sendMessage("Player not found");
+				
+				return false;
+			}
+			
+			PlayerConfig playerConfig = new PlayerConfig(this.plugin, target);
+			
+			if (!this.plugin.config.getBoolean("allow-quad-reselect") && playerConfig.getQuadStatus() && !sender.hasPermission("pcmcessentials.admin")) {
+				sender.sendMessage("You cannot change your quad once it has been set");
+				
+				return true;
+			}
+
+			if (args[0].equalsIgnoreCase("authleft")) {
+				this.setPlayerNameColor(target, "&c");
+			} else if (args[0].equalsIgnoreCase("authright")) {
+				this.setPlayerNameColor(target, "&9");
+			} else if (args[0].equalsIgnoreCase("libleft")) {
+				this.setPlayerNameColor(target, "&a");
+			} else if (args[0].equalsIgnoreCase("libright")) {
+				this.setPlayerNameColor(target, "&e");
+			} else {
+				sender.sendMessage("Invalid quadrant name provided");
+				
+				return false;
+			}
+			
+			playerConfig.setQuadStatus(true);
+			playerConfig.save();
+			
+			sender.sendMessage(target.getName() + "'s quad is now " + args[0]);
 			
 			return true;
 		}

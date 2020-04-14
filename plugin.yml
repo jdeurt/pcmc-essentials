@@ -1,14 +1,14 @@
 main: com.sharky.pcmc.PCMCEssentials
 name: PCMCEssentials
 depend: [Essentials]
-version: 0.5.1
+version: 0.6.3
 api-version: 1.15
 author: Sharky
 description: Essential commands and functions for the PCMC server
 commands:
-   pcmcessentialsreload:
-      description: Reloads the plugin config
-      usage: /<command>
+   pcmc:
+      description: Basic plugin utilities
+      usage: /<command> [reload|info]
    quad:
       description: Allows players to set their own quad
       usage: /<command> [quadrant]

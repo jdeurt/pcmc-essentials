@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>PCMCEssentials</groupId>
     <artifactId>PCMCEssentials</artifactId>
-    <version>0.5.1</version>
+    <version>0.6.3</version>
     <repositories>
         <repository>
             <id>spigotmc-repo</id>
