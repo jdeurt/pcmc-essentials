@@ -10,19 +10,21 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.event.Listener;
 
 public class PCMCEssentials extends JavaPlugin implements Listener {
-	FileConfiguration config = getConfig();
+	public FileConfiguration config = getConfig();
 	
 	@Override
 	public void onEnable() {
 		// Config stuff
-		config.addDefault("allow-quad-reselect", false);
+		saveDefaultConfig();
+		getConfig().addDefault("allow-quad-reselect", false);
 		config.options().copyDefaults(true);
 		saveConfig();
 		
 		// Register listeners
-		getServer().getPluginManager().registerEvents(new EventPlayerChat(), this);
+		getServer().getPluginManager().registerEvents(new EventPlayerTeleport(), this);
 		
 		// Register commands
+		this.getCommand("pcmcessentialsreload").setExecutor(new CommandReload(this));
 		this.getCommand("quad").setExecutor(new CommandQuad(this));
 		this.getCommand("quad").setTabCompleter(new CompleterQuad());
 		// this.getCommand("link").setExecutor(new CommandLink(this));

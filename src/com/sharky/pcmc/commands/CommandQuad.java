@@ -5,14 +5,14 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.java.JavaPlugin;
 
+import com.sharky.pcmc.PCMCEssentials;
 import com.sharky.pcmc.helpers.PlayerConfig;
 
 public class CommandQuad implements CommandExecutor {
-	private JavaPlugin plugin;
+	private PCMCEssentials plugin;
 	
-	public CommandQuad(JavaPlugin plugin) {
+	public CommandQuad(PCMCEssentials plugin) {
 		this.plugin = plugin;
 	}
 	
@@ -29,7 +29,7 @@ public class CommandQuad implements CommandExecutor {
 			Player player = (Player) sender;
 			Player target = (Player) sender;
 			
-			if (args.length != 1 || args.length != 2) {
+			if (args.length != 1 && args.length != 2) {
 				player.sendMessage("Incorrect command syntax");
 				
 				return false;
@@ -39,7 +39,7 @@ public class CommandQuad implements CommandExecutor {
 				if (!player.hasPermission("pcmcessentials.admin")) {
 					player.sendMessage("Missing permission pcmcessentials.admin");
 					
-					return false;
+					return true;
 				}
 				
 				target = this.plugin.getServer().getPlayerExact(args[1]);
@@ -53,20 +53,20 @@ public class CommandQuad implements CommandExecutor {
 			
 			PlayerConfig playerConfig = new PlayerConfig(this.plugin, player);
 			
-			if (playerConfig.getQuadStatus() && !player.hasPermission("pcmcessentials.admin")) {
+			if (!this.plugin.config.getBoolean("allow-quad-reselect") && playerConfig.getQuadStatus() && !player.hasPermission("pcmcessentials.admin")) {
 				player.sendMessage("You cannot change your quad once it has been set");
 				
-				return false;
+				return true;
 			}
 
 			if (args[0].equalsIgnoreCase("authleft")) {
-				this.setPlayerNameColor(player, "&c");
+				this.setPlayerNameColor(target, "&c");
 			} else if (args[0].equalsIgnoreCase("authright")) {
-				this.setPlayerNameColor(player, "&9");
+				this.setPlayerNameColor(target, "&9");
 			} else if (args[0].equalsIgnoreCase("libleft")) {
-				this.setPlayerNameColor(player, "&a");
+				this.setPlayerNameColor(target, "&a");
 			} else if (args[0].equalsIgnoreCase("libright")) {
-				this.setPlayerNameColor(player, "&e");
+				this.setPlayerNameColor(target, "&e");
 			} else {
 				player.sendMessage("Invalid quadrant name provided");
 				
@@ -75,6 +75,8 @@ public class CommandQuad implements CommandExecutor {
 			
 			playerConfig.setQuadStatus(true);
 			playerConfig.save();
+			
+			player.sendMessage(target.getName() + "'s quad is now " + args[0]);
 			
 			return true;
 		} else {

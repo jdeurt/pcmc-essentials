@@ -1,11 +1,14 @@
 main: com.sharky.pcmc.PCMCEssentials
 name: PCMCEssentials
-depend: [Essentials, CombatLogX]
-version: 0.1-SNAPSHOT
+depend: [Essentials]
+version: 0.5.1
 api-version: 1.15
 author: Sharky
 description: Essential commands and functions for the PCMC server
 commands:
+   pcmcessentialsreload:
+      description: Reloads the plugin config
+      usage: /<command>
    quad:
       description: Allows players to set their own quad
       usage: /<command> [quadrant]
@@ -21,9 +24,12 @@ permissions:
       default: true
    pcmcessentials.link:
       default: true
+   pcmcessentials.allowtp:
+      default: true
    pcmcessentials.*:
       default: op
       children:
          pcmcessentials.admin: true
          pcmcessentials.quad: true
          pcmcessentials.link: true
+         pcmcessentials.allowtp: true

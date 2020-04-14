@@ -1,17 +1,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" 
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>PCMC-Essentials</groupId>
-    <artifactId>PCMC-Essentials</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <groupId>PCMCEssentials</groupId>
+    <artifactId>PCMCEssentials</artifactId>
+    <version>0.5.1</version>
     <repositories>
         <repository>
             <id>spigotmc-repo</id>
             <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
-        </repository>
-        <repository>
-            <id>codemc-repo</id>
-            <url>https://repo.codemc.io/repository/maven-public/</url>
         </repository>
     </repositories>
     <dependencies>
@@ -22,10 +18,14 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-    		<groupId>com.SirBlobman.combatlogx</groupId>
-    		<artifactId>CombatLogX-API</artifactId>
-    		<version>10.0.0.0-SNAPSHOT</version>
-    		<scope>provided</scope>
+			<groupId>com.github.cliftonlabs</groupId>
+			<artifactId>json-simple</artifactId>
+			<version>3.1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>net.sf.dozer</groupId>
+			<artifactId>dozer</artifactId>
+			<version>5.5.1</version>
 		</dependency>
     </dependencies>
     <name>PCMC Essentials</name>
