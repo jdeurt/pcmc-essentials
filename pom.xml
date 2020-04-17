@@ -17,16 +17,6 @@
             <version>1.15.2-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
-        <dependency>
-			<groupId>com.github.cliftonlabs</groupId>
-			<artifactId>json-simple</artifactId>
-			<version>3.1.0</version>
-		</dependency>
-		<dependency>
-			<groupId>net.sf.dozer</groupId>
-			<artifactId>dozer</artifactId>
-			<version>5.5.1</version>
-		</dependency>
     </dependencies>
     <name>PCMC Essentials</name>
     <description>Essentials plugin for the PCMC server</description>

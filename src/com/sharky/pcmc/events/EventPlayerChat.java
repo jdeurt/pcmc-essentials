@@ -24,7 +24,7 @@ public class EventPlayerChat implements Listener {
 
 	@EventHandler
 	public void onPlayerChat(AsyncPlayerChatEvent event) {
-		if (!this.plugin.config.getBoolean("send-chat-events")) {
+		if (!this.plugin.config.getBoolean("api.send-chat-events")) {
 			return;
 		}
 
@@ -33,7 +33,7 @@ public class EventPlayerChat implements Listener {
 		HttpPost postRequest = new HttpPost("https://api.pcmc.xyz/mcchat/" + event.getPlayer().getDisplayName());
 		
 		List<NameValuePair> params = new ArrayList<NameValuePair>();
-		params.add(new BasicNameValuePair("token", this.plugin.config.getString("api-token")));
+		params.add(new BasicNameValuePair("token", this.plugin.config.getString("api.token")));
 		params.add(new BasicNameValuePair("message", event.getMessage()));
 		
 		try {

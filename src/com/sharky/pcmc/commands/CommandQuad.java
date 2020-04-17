@@ -53,7 +53,7 @@ public class CommandQuad implements CommandExecutor {
 			
 			PlayerConfig playerConfig = new PlayerConfig(this.plugin, target);
 			
-			if (!this.plugin.config.getBoolean("allow-quad-reselect") && playerConfig.getQuadStatus() && !player.hasPermission("pcmcessentials.admin")) {
+			if (!this.plugin.globalSettings.getQuadAllowReselect() && playerConfig.getQuadStatus() && !player.hasPermission("pcmcessentials.admin")) {
 				player.sendMessage("You cannot change your quad once it has been set");
 				
 				return true;
@@ -102,7 +102,7 @@ public class CommandQuad implements CommandExecutor {
 			
 			PlayerConfig playerConfig = new PlayerConfig(this.plugin, target);
 			
-			if (!this.plugin.config.getBoolean("allow-quad-reselect") && playerConfig.getQuadStatus() && !sender.hasPermission("pcmcessentials.admin")) {
+			if (!this.plugin.globalSettings.getQuadAllowReselect() && playerConfig.getQuadStatus() && !sender.hasPermission("pcmcessentials.admin")) {
 				sender.sendMessage("You cannot change your quad once it has been set");
 				
 				return true;
